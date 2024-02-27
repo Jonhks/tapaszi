@@ -1,0 +1,38 @@
+.containerHome {
+  /* background-color: rgb(3, 3, 77) !important; */
+  display: flex;
+  flex-direction: row;
+  background-image: url("../../../assets/img/home.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fondo {
+  color: white;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.appbar,
+.appbar > button {
+  background-color: #238b94 !important;
+  color: white !important;
+  opacity: 0.8 !important;
+}
+
+.Mydrawer > div {
+  background-color: #238b94 !important;
+  height: auto !important;
+  color: white !important;
+  opacity: 0.8 !important;
+}
+
+.titleDrawer {
+  font-size: 20px;
+  text-align: center;
+  padding: 16px 0 0 0;
+}
