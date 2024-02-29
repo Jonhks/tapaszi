@@ -1,0 +1,64 @@
+.boxPortfolio {
+  background-color: #b45705;
+  height: auto;
+  border-radius: 20px;
+  padding: 16px;
+  opacity: 0.7;
+}
+
+.addPortFolio {
+  display: flex;
+  justify-content: end;
+}
+.addPortFolio button {
+  margin: 10px 0;
+  background-color: #3f1e01;
+  text-transform: capitalize;
+}
+.addPortFolio button:active,
+.addPortFolio button:hover {
+  background-color: #ab5d18;
+}
+
+.removePortFolio button {
+  margin-top: 5px;
+  background-color: #d95818;
+  text-transform: capitalize;
+}
+.removePortFolio button:active,
+.removePortFolio button:hover {
+  background-color: #b86e2e;
+}
+
+.headerPortfolio,
+.headerPortfolio > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.headerPortfolio div h2 {
+  font-size: 32px;
+}
+
+.headerPortfolio div svg {
+  margin-right: 10px;
+}
+
+.tabComponent {
+  color: white;
+  font: 20px;
+  font-weight: bold;
+}
+
+.activeTab {
+  color: white !important;
+  font: 20px !important;
+  background: #e89050 !important;
+}
+
+.containerDropdown {
+  display: flex;
+  align-items: center;
+}

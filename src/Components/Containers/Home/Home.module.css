@@ -1,4 +1,4 @@
-.box {
+.boxHome {
   background-color: #b45705;
   width: 100%;
   min-height: 30vh;
@@ -45,8 +45,13 @@
 }
 
 .containerBtn > button {
-  background-color: #238b94 !important;
+  background-color: #e27d25 !important;
   color: white !important;
   text-transform: capitalize;
   /* opacity: 0.8 !important; */
+}
+
+.containerBtn > button:hover,
+.containerBtn > button:active {
+  background-color: #f69b4b !important;
 }

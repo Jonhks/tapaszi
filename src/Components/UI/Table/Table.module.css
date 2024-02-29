@@ -1,0 +1,12 @@
+.green {
+  background-color: rgb(4, 151, 136);
+}
+
+.red {
+  background-color: rgb(236, 30, 30);
+}
+
+.tableRow th {
+  font-size: 0.8rem !important;
+  font-weight: bold !important;
+}

@@ -21,7 +21,9 @@ const Home = () => {
           item
           xs={5}
           m={1}
-          className={`${classes.box} ${selected === "first" && classes.active}`}
+          className={`${classes.boxHome} ${
+            selected === "first" && classes.active
+          }`}
           id="first"
           onClick={() => setSelected("first")}
         >
@@ -51,7 +53,7 @@ const Home = () => {
           item
           xs={3.5}
           m={1}
-          className={`${classes.box} ${
+          className={`${classes.boxHome} ${
             selected === "second" && classes.active
           }`}
           id="second"
@@ -81,7 +83,9 @@ const Home = () => {
           item
           xs={3.5}
           m={1}
-          className={`${classes.box} ${selected === "third" && classes.active}`}
+          className={`${classes.boxHome} ${
+            selected === "third" && classes.active
+          }`}
           id="third"
           onClick={() => setSelected("third")}
         >

@@ -197,6 +197,7 @@ export default function MiniDrawer({ children }) {
                       justifyContent: open ? "initial" : "center",
                       px: 2.5,
                     }}
+                    onClick={() => navigate(el?.id)}
                   >
                     <ListItemIcon
                       sx={{
@@ -205,7 +206,6 @@ export default function MiniDrawer({ children }) {
                         justifyContent: "center",
                         color: "white",
                       }}
-                      onClick={() => navigate(el?.id)}
                     >
                       {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                     </ListItemIcon>
