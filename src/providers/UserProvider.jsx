@@ -35,7 +35,7 @@ const UserProvider = ({ children }) => {
       "http://b.ercom.microbit.com:8080/com.tapaszi.ws/rest/participants/register?api-key=TESTAPIKEY";
 
     axios
-      .post(url, postUser)
+      .post(url, JSON.stringify(postUser))
       .then((response) => {
         console.log(response);
       })
