@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Backdrop from "../Components/UI/Backdrop/Backdrop";
+import UserProvider from "../providers/UserProvider";
 
 const Login = React.lazy(() => import("../Components/Containers/Login/Login"));
 const SignUp = React.lazy(() =>
@@ -41,18 +42,22 @@ const routes = () => {
         exact
         path="/login"
         element={
-          <Suspense fallback={<Backdrop show />}>
-            <Login />
-          </Suspense>
+          <UserProvider>
+            <Suspense fallback={<Backdrop show />}>
+              <Login />
+            </Suspense>
+          </UserProvider>
         }
       />
       <Route
         exact
         path="/signup"
         element={
-          <Suspense fallback={<Backdrop show />}>
-            <SignUp />
-          </Suspense>
+          <UserProvider>
+            <Suspense fallback={<Backdrop show />}>
+              <SignUp />
+            </Suspense>
+          </UserProvider>
         }
       />
       <Route
@@ -101,8 +106,8 @@ const routes = () => {
         }
       />
       {/* Private Routes */}
-      <Route element={<PrivateRoute />}>
-        {/* <Route
+      {/* <Route element={<PrivateRoute />}> */}
+      {/* <Route
           exact
           path="/home"
           element={
@@ -111,7 +116,7 @@ const routes = () => {
             </Suspense>
           }
         /> */}
-        {/* <Route
+      {/* <Route
           exact
           path="maternidad/sintoma/:id"
           element={
@@ -122,7 +127,7 @@ const routes = () => {
             </Suspense>
           }
         /> */}
-      </Route>
+      {/* </Route> */}
     </Routes>
   );
 };

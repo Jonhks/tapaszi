@@ -156,3 +156,11 @@ body {
 .containerSignUp > div:hover {
   cursor: pointer;
 }
+
+.error {
+  color: red;
+  margin: 5px 0;
+  background: black;
+  padding: 5px 10px;
+  font-weight: bold;
+}

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import * as alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../../context/UserContext";
+
 import {
   Container,
   Grid,
@@ -23,11 +25,50 @@ import classes from "./Login.module.css";
 
 const Login = () => {
   const [age, setAge] = useState("");
+  const [userData, setUserData] = useState({});
+  const [error, setError] = useState(false);
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const getUserData = (e) => {
+    setUserData({
+      ...userData,
+      [e?.target?.name]: e?.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    setError(true);
+    const { name, surname, email, stateId, username, password } = userData;
+    if (
+      !name ||
+      !surname ||
+      !email ||
+      !stateId ||
+      !username ||
+      !password ||
+      name?.length <= 2 ||
+      surname?.length <= 2 ||
+      (email?.length <= 2 && !email?.includes("@")) ||
+      !stateId ||
+      username?.length <= 2 ||
+      password?.length <= 2
+    ) {
+      setError(true);
+      alertify.error("All fields are oligatory!!");
+      setTimeout(() => setError(false), 2000);
+    } else {
+      setError(false);
+      setUser(userData);
+      alertify.success("send login request");
+    }
+  };
+
   return (
     <Grid
       container
@@ -69,19 +110,21 @@ const Login = () => {
                         <PersonIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <Input
                     required
                     type={"text"}
                     sx={{ width: "80%", m: 2 }}
                     id="input-with-icon-adornment"
-                    name="lastName"
+                    name="surname"
                     placeholder="Last Name"
                     startAdornment={
                       <InputAdornment position="start">
                         <PersonIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <Input
                     required
@@ -95,6 +138,7 @@ const Login = () => {
                         <MailOutlineIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <FormControl
                     variant="standard"
@@ -107,13 +151,15 @@ const Login = () => {
                       <FlagIcon color="white" />
                       State
                     </InputLabel>
-
                     <Select
                       labelId="demo-simple-select-standard-label"
                       id="demo-simple-select-standard"
                       value={age}
-                      onChange={handleChange}
-                      name="state"
+                      onChange={(e) => {
+                        handleChange(e);
+                        getUserData(e);
+                      }}
+                      name="stateId"
                       label="State"
                       placeholder="State"
                       className={classes.selectClass}
@@ -131,13 +177,14 @@ const Login = () => {
                     type={"e-mail"}
                     sx={{ width: "80%", m: 2 }}
                     id="input-with-icon-adornment"
-                    name="userName"
+                    name="username"
                     placeholder="User name"
                     startAdornment={
                       <InputAdornment position="start">
                         <PersonIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <Input
                     required
@@ -151,21 +198,31 @@ const Login = () => {
                         <HttpsIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <Grid
                     item
                     xs={12}
                     display={"flex"}
                     justifyContent={"center"}
+                    alignItems={"center"}
+                    flexDirection={"column"}
                     className={classes.containerBtnLogin}
                   >
                     <Button
                       variant="contained"
-                      onClick={() => alertify.success("send login request")}
+                      onClick={() => validateForm()}
                       sx={{ m: 2 }}
                     >
                       Sign Up
                     </Button>
+                    {error && (
+                      <div>
+                        <p className={classes.error}>
+                          All fields are oligatory
+                        </p>
+                      </div>
+                    )}
                   </Grid>
                 </Grid>
               </div>

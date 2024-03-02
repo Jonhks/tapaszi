@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import * as alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../../context/UserContext";
+
 import {
   Container,
   Grid,
@@ -19,6 +21,36 @@ import classes from "./Login.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
+  const [error, setError] = useState(false);
+  const { setUser } = useContext(UserContext);
+
+  const getUserData = (e) => {
+    setUserData({
+      ...userData,
+      [e?.target?.name]: e?.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    setError(true);
+    const { user, password } = userData;
+    if (
+      user &&
+      password &&
+      user?.length >= 2 &&
+      user?.includes("@") &&
+      password?.length >= 2
+    ) {
+      setError(false);
+      setUser(userData);
+      alertify.success("send login request");
+    } else {
+      setError(true);
+      alertify.error("All fields are oligatory!!");
+      setTimeout(() => setError(false), 2000);
+    }
+  };
 
   return (
     <Grid
@@ -56,13 +88,14 @@ const Login = () => {
                     type={"e-mail"}
                     sx={{ width: "80%", m: 2 }}
                     id="input-with-icon-adornment"
-                    name="email"
+                    name="user"
                     placeholder="E-mail"
                     startAdornment={
                       <InputAdornment position="start">
                         <MailOutlineIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <Input
                     required
@@ -76,6 +109,7 @@ const Login = () => {
                         <HttpsIcon color="white" />
                       </InputAdornment>
                     }
+                    onChange={(e) => getUserData(e)}
                   />
                   <div className={classes.containerCheckBox}>
                     <FormControlLabel
@@ -95,14 +129,24 @@ const Login = () => {
                     xs={12}
                     display={"flex"}
                     justifyContent={"center"}
+                    alignItems={"center"}
+                    flexDirection={"column"}
                     className={classes.containerBtnLogin}
                   >
                     <Button
                       variant="contained"
-                      onClick={() => alertify.success("send login request")}
+                      onClick={() => validateForm()}
+                      sx={{ m: 2 }}
                     >
                       Login
                     </Button>
+                    {error && (
+                      <div>
+                        <p className={classes.error}>
+                          All fields are oligatory
+                        </p>
+                      </div>
+                    )}
                   </Grid>
                 </Grid>
               </div>

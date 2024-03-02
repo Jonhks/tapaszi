@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Header from "../Containers/Header/Header";
 import Menu from "../UI/Menu/Menu";
 import classes from "./Layout.module.css";
 
