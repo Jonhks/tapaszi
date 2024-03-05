@@ -24,15 +24,16 @@ import PersonIcon from "@mui/icons-material/Person";
 import classes from "./Login.module.css";
 
 const Login = () => {
-  const [age, setAge] = useState("");
+  const [stateSelected, setStateSelected] = useState("");
   const [userData, setUserData] = useState({});
   const [error, setError] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { getSignUp, states } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    console.log(event.target);
+    setStateSelected(event.target.value);
   };
 
   const getUserData = (e) => {
@@ -64,8 +65,9 @@ const Login = () => {
       setTimeout(() => setError(false), 2000);
     } else {
       setError(false);
-      setUser(userData);
+      console.log(userData);
       alertify.success("send login request");
+      getSignUp(userData);
     }
   };
 
@@ -154,7 +156,7 @@ const Login = () => {
                     <Select
                       labelId="demo-simple-select-standard-label"
                       id="demo-simple-select-standard"
-                      value={age}
+                      value={stateSelected}
                       onChange={(e) => {
                         handleChange(e);
                         getUserData(e);
@@ -164,12 +166,18 @@ const Login = () => {
                       placeholder="State"
                       className={classes.selectClass}
                     >
-                      <MenuItem value="State">
-                        <em>State</em>
-                      </MenuItem>
-                      <MenuItem value={"mex"}>Mex</MenuItem>
-                      <MenuItem value={"usa"}>USA</MenuItem>
-                      <MenuItem value={"japan"}>Japan</MenuItem>
+                      {states &&
+                        states?.map((state) => {
+                          return (
+                            <MenuItem
+                              key={state?.id}
+                              id={state?.id}
+                              value={state?.id}
+                            >
+                              {state?.name}
+                            </MenuItem>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                   <Input
@@ -231,7 +239,6 @@ const Login = () => {
                 <div
                   onClick={() => {
                     navigate("/login");
-                    alertify.success("send login request");
                   }}
                 >
                   Login

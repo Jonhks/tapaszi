@@ -25,7 +25,7 @@ const LogOut = React.lazy(() =>
   import("../Components/Containers/LogOut/LogOut")
 );
 
-const routes = () => {
+const routes = ({ isAuthenticated, setIsAuthenticated }) => {
   return (
     <Routes>
       {/* Public Routes */}
@@ -42,7 +42,10 @@ const routes = () => {
         exact
         path="/login"
         element={
-          <UserProvider>
+          <UserProvider
+            isAuthenticated={isAuthenticated}
+            setIsAuthenticated={setIsAuthenticated}
+          >
             <Suspense fallback={<Backdrop show />}>
               <Login />
             </Suspense>
@@ -53,19 +56,26 @@ const routes = () => {
         exact
         path="/signup"
         element={
-          <UserProvider>
+          <UserProvider
+            isAuthenticated={isAuthenticated}
+            setIsAuthenticated={setIsAuthenticated}
+          >
             <Suspense fallback={<Backdrop show />}>
               <SignUp />
             </Suspense>
           </UserProvider>
         }
       />
+      {/* Private Routes */}
+      {/* <Route element={<PrivateRoute > </PrivateRoute>}> */}
       <Route
         exact
         path="/home"
         element={
           <Suspense fallback={<Backdrop show />}>
-            <Home></Home>
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <Home></Home>
+            </PrivateRoute>
           </Suspense>
         }
       />
@@ -105,28 +115,15 @@ const routes = () => {
           </Suspense>
         }
       />
-      {/* Private Routes */}
-      {/* <Route element={<PrivateRoute />}> */}
-      {/* <Route
-          exact
-          path="/home"
-          element={
-            <Suspense fallback={<Backdrop show />}>
-              <Home></Home>
-            </Suspense>
-          }
-        /> */}
-      {/* <Route
-          exact
-          path="maternidad/sintoma/:id"
-          element={
-            <Suspense fallback={<Backdrop show />}>
-              <SymptomsProvider>
-                <SymptomDetail></SymptomDetail>
-              </SymptomsProvider>
-            </Suspense>
-          }
-        /> */}
+      <Route
+        exact
+        path="/home"
+        element={
+          <Suspense fallback={<Backdrop show />}>
+            <Home></Home>
+          </Suspense>
+        }
+      />
       {/* </Route> */}
     </Routes>
   );

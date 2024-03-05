@@ -19,11 +19,13 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import HttpsIcon from "@mui/icons-material/Https";
 import classes from "./Login.module.css";
 
-const Login = () => {
+const Login = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [error, setError] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { getLogin } = useContext(UserContext);
+
+  // console.log(isAuthenticated);
 
   const getUserData = (e) => {
     setUserData({
@@ -43,8 +45,8 @@ const Login = () => {
       password?.length >= 2
     ) {
       setError(false);
-      setUser(userData);
-      alertify.success("send login request");
+      getLogin(userData);
+      // alertify.success(messageLogin);
     } else {
       setError(true);
       alertify.error("All fields are oligatory!!");
@@ -154,7 +156,6 @@ const Login = () => {
                 <p>Don't have an account ?</p>
                 <div
                   onClick={() => {
-                    alertify.success("send signUp request");
                     navigate("/signup");
                   }}
                 >
