@@ -85,7 +85,7 @@ const Login = ({ isAuthenticated }) => {
                     sx={{ width: "80%", m: 2 }}
                     id="input-with-icon-adornment"
                     name="user"
-                    placeholder="E-mail"
+                    placeholder="E-mail or UserName"
                     startAdornment={
                       <InputAdornment position="start">
                         <MailOutlineIcon color="white" />
