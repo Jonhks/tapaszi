@@ -88,7 +88,9 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
   };
 
   const getStates = () => {
-    const urlStates = `${process.env.REACT_APP_BASE_DOMAIN}/states?api-key=${process.env.REACT_APP_APIKEY}`;
+    // const urlStates = `${process.env.REACT_APP_BASE_DOMAIN}/states?api-key=${process.env.REACT_APP_APIKEY}`;
+    const urlStates =
+      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/states?api-key=TESTAPIKEY";
     axios
       .get(urlStates, {
         headers: {
