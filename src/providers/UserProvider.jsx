@@ -18,7 +18,9 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
   }, [isAuthenticated]);
 
   const getSignUp = (user) => {
-    const urlRegister = `${process.env.REACT_APP_BASE_DOMAIN}/participants/register?api-key=${process.env.REACT_APP_APIKEY}`;
+    // const urlRegister = `${process.env.REACT_APP_BASE_DOMAIN}/participants/register?api-key=${process.env.REACT_APP_APIKEY}`;
+    const urlRegister =
+      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/participants/register?api-key=TESTAPIKEY";
 
     const postUser = {
       name: user?.name?.toUpperCase(),
