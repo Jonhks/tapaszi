@@ -5,6 +5,7 @@ import Layout from "./Components/Layout/Layout";
 // import LocationProvider from "./providers/LocationProvider";
 
 const App = () => {
+  // ?! Quitar true en login
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
@@ -12,7 +13,10 @@ const App = () => {
     <BrowserRouter>
       {/* <HeaderProvider setMode={setMode}> */}
       {/* <LocationProvider> */}
-      <Layout>
+      <Layout
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+      >
         <Routes
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}

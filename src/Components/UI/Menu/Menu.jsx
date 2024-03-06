@@ -22,7 +22,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import { useLocation } from "react-router-dom";
 import classes from "./Menu.module.css";
 import { useNavigate } from "react-router-dom";
-
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -90,7 +91,11 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer({ children }) {
+export default function MiniDrawer({
+  isAuthenticated,
+  setIsAuthenticated,
+  children,
+}) {
   const location = useLocation();
   const [hideMenu, setHideMenu] = useState(true);
   const navigate = useNavigate();
@@ -186,36 +191,47 @@ export default function MiniDrawer({ children }) {
                 { text: "History", id: "history" },
                 { text: "LogOut", id: "logOut" },
               ].map((el, index) => (
-                <ListItem
-                  key={index}
-                  disablePadding
-                  sx={{ display: "block" }}
-                >
-                  <ListItemButton
-                    sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
-                    }}
-                    onClick={() => navigate(el?.id)}
+                <Grid item>
+                  <Tooltip
+                    title={el?.text}
+                    placement="right"
                   >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                        color: "white",
-                      }}
+                    <ListItem
+                      key={index}
+                      disablePadding
+                      sx={{ display: "block" }}
                     >
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={el?.text}
-                      onClick={() => navigate(el?.id)}
-                      sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </ListItemButton>
-                </ListItem>
+                      <ListItemButton
+                        sx={{
+                          minHeight: 48,
+                          justifyContent: open ? "initial" : "center",
+                          px: 2.5,
+                        }}
+                        onClick={() =>
+                          el?.id !== "logOut"
+                            ? navigate(el?.id)
+                            : setIsAuthenticated(false)
+                        }
+                      >
+                        <ListItemIcon
+                          sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : "auto",
+                            justifyContent: "center",
+                            color: "white",
+                          }}
+                        >
+                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={el?.text}
+                          onClick={() => navigate(el?.id)}
+                          sx={{ opacity: open ? 1 : 0 }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  </Tooltip>
+                </Grid>
               ))}
             </List>
             <Divider />

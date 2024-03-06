@@ -3,11 +3,17 @@ import Menu from "../UI/Menu/Menu";
 import classes from "./Layout.module.css";
 
 const layout = (props) => {
+  const { isAuthenticated, setIsAuthenticated } = props;
   return (
     <Fragment>
       <div className={classes.container}>
-        {/* <Menu /> */}
-        <Menu className={classes.Content}>{props.children}</Menu>
+        <Menu
+          className={classes.Content}
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+        >
+          {props.children}
+        </Menu>
       </div>
     </Fragment>
   );
