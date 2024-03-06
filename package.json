@@ -2,7 +2,7 @@
   "name": "tapaszi",
   "homepage": "http://d.ercom.microbit.com:81",
   "version": "0.1.0",
-  "proxy": "http://localhost:8443",
+  "proxy": "https://ercom-b.dev:8443",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.1",
