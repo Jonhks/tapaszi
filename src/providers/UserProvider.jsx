@@ -21,14 +21,14 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
     // const urlRegister = `${process.env.REACT_APP_BASE_DOMAIN}/participants/register?api-key=${process.env.REACT_APP_APIKEY}`;
     const urlRegister =
       "https://ercom-b.dev:8443/com.tapaszi.ws/rest/participants/register?api-key=TESTAPIKEY";
-
+    console.log(user);
     const postUser = {
       name: user?.name?.toUpperCase(),
       surname: user?.surname?.toUpperCase(),
       email: user?.email,
       username: user?.username,
       password: user?.password,
-      stateId: 1,
+      stateId: user?.stateId,
     };
 
     axios
