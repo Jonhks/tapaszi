@@ -37,13 +37,7 @@ const Login = ({ isAuthenticated }) => {
   const validateForm = () => {
     setError(true);
     const { user, password } = userData;
-    if (
-      user &&
-      password &&
-      user?.length >= 2 &&
-      user?.includes("@") &&
-      password?.length >= 2
-    ) {
+    if (user && password && user?.length >= 2 && password?.length >= 2) {
       setError(false);
       getLogin(userData);
       // alertify.success(messageLogin);
