@@ -186,7 +186,7 @@ const Login = () => {
                     sx={{ width: "80%", m: 2 }}
                     id="input-with-icon-adornment"
                     name="username"
-                    placeholder="User name"
+                    placeholder="Username"
                     startAdornment={
                       <InputAdornment position="start">
                         <PersonIcon color="white" />

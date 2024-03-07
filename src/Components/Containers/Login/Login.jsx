@@ -12,8 +12,6 @@ import {
   Button,
   Input,
   InputAdornment,
-  FormControlLabel,
-  Checkbox,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import HttpsIcon from "@mui/icons-material/Https";
@@ -43,7 +41,7 @@ const Login = ({ isAuthenticated }) => {
       // alertify.success(messageLogin);
     } else {
       setError(true);
-      alertify.error("All fields are oligatory!!");
+      alertify.error("All fields are mandatory!!");
       setTimeout(() => setError(false), 2000);
     }
   };
@@ -108,14 +106,14 @@ const Login = ({ isAuthenticated }) => {
                     onChange={(e) => getUserData(e)}
                   />
                   <div className={classes.containerCheckBox}>
-                    <FormControlLabel
+                    {/* <FormControlLabel
                       control={<Checkbox />}
                       label="Remember me"
-                    />
+                    /> */}
                     <span
-                      onClick={() =>
-                        alertify.success("requests password change")
-                      }
+                    // onClick={() =>
+                    //   alertify.success("requests password change")
+                    // }
                     >
                       Forgot password?
                     </span>

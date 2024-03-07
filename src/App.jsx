@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes/Routes";
 import Layout from "./Components/Layout/Layout";
+import "../src/";
 // import LocationProvider from "./providers/LocationProvider";
+// import "sweetalert2/src/sweetalert2.scss";
 
 const App = () => {
   // ?! Quitar true en login
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   return (
     // <ThemeProvider theme={theme}>

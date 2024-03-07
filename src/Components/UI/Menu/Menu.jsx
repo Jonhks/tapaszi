@@ -191,13 +191,15 @@ export default function MiniDrawer({
                 { text: "History", id: "history" },
                 { text: "LogOut", id: "logOut" },
               ].map((el, index) => (
-                <Grid item>
+                <Grid
+                  item
+                  key={index}
+                >
                   <Tooltip
                     title={el?.text}
                     placement="right"
                   >
                     <ListItem
-                      key={index}
                       disablePadding
                       sx={{ display: "block" }}
                     >
@@ -207,11 +209,12 @@ export default function MiniDrawer({
                           justifyContent: open ? "initial" : "center",
                           px: 2.5,
                         }}
-                        onClick={() =>
+                        onClick={() => {
+                          if (el?.id === "history") return;
                           el?.id !== "logOut"
                             ? navigate(el?.id)
-                            : setIsAuthenticated(false)
-                        }
+                            : setIsAuthenticated(false);
+                        }}
                       >
                         <ListItemIcon
                           sx={{
