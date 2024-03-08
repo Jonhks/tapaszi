@@ -117,10 +117,11 @@ const MyPortfolio = () => {
     const portFolioEditable = [
       ...newData?.filter((port) => port?.newPortfolio),
     ][0];
+    console.log(!portFolioEditable?.teams?.some((el) => el === false));
 
     if (
-      portFolioEditable?.championshipPoints !== 0 &&
-      portFolioEditable?.teams?.some((el) => el !== false)
+      portFolioEditable?.championshipPoints >= 1 &&
+      !portFolioEditable?.teams?.some((el) => el === false)
     ) {
       const teamsId = portFolioEditable?.teams?.map((el) => {
         return { id: el.id };
@@ -132,15 +133,15 @@ const MyPortfolio = () => {
       setError(false);
       setEditing(false);
     } else if (
-      portFolioEditable?.championshipPoints !== 0 &&
-      !portFolioEditable?.teams?.some((el) => el !== false)
+      portFolioEditable?.championshipPoints >= 1 &&
+      portFolioEditable?.teams?.some((el) => el === false)
     ) {
       setError(true);
-      setTimeout(() => setError(false), 2000);
+      setTimeout(() => setError(false), 1000);
       alertify.error("You must select all equipment!");
     } else {
       setError(true);
-      setTimeout(() => setError(false), 2000);
+      setTimeout(() => setError(false), 1000);
       alertify.error("All fields are mandatory!!");
     }
   };
@@ -307,13 +308,14 @@ const MyPortfolio = () => {
                 <div>
                   <BasquetIcon />
                   <h2>
-                    Portfolios {portfolios?.length > 0 && portfolios?.length}
+                    Portfolio{portfolios?.length > 1 && "s"}:{" "}
+                    {portfolios?.length > 0 && portfolios?.length}
                   </h2>
                 </div>
-                <div>
+                {/* <div>
                   <PodiumIcon />
                   <h4>Name Tournament</h4>
-                </div>
+                </div> */}
               </div>
               <Box>
                 <Grid
