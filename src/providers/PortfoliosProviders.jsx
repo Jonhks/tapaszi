@@ -6,11 +6,18 @@ const PortfoliosProviders = ({ children }) => {
   const [portfoliosObtained, setPortfoliosObtained] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [teams, setTeams] = useState([]);
+  const [participant, setParticipant] = useState(null);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("userTapaszi")) !== null) {
+      setParticipant(JSON.parse(localStorage.getItem("userTapaszi")));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getPortfolios = () => {
     setIsLoading(true);
-    const urlGetPortfolios =
-      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios?api-key=TESTAPIKEY&participant-id=1";
+    const urlGetPortfolios = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios?api-key=TESTAPIKEY&participant-id=${participant?.id}`;
 
     axios
       .get(urlGetPortfolios, {
@@ -52,8 +59,10 @@ const PortfoliosProviders = ({ children }) => {
   };
 
   const postNewPortfolio = (portfolio) => {
-    const urlLogin =
-      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios/register?api-key=TESTAPIKEY&participant-id=1";
+    console.log(portfoliosObtained?.length);
+    if (portfoliosObtained?.length + 1 >= 8) return;
+    console.log("se guarda");
+    const urlLogin = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios/register?api-key=TESTAPIKEY&participant-id=${participant?.id}`;
     const postPortfolio = {
       championshipPoints: Number(portfolio?.championshipPoints),
       teams: portfolio?.teamsId,
@@ -74,7 +83,7 @@ const PortfoliosProviders = ({ children }) => {
   };
 
   const removeportfolio = (portId) => {
-    const urlRemovePortfolio = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios/remove?api-key=TESTAPIKEY&portfolio-id=${portId}&participant-id=1`;
+    const urlRemovePortfolio = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios/remove?api-key=TESTAPIKEY&portfolio-id=${portId}&participant-id=${participant?.id}`;
     const newData = [...portfoliosObtained];
 
     newData.filter((el) => el?.id !== portId);
@@ -125,9 +134,12 @@ const PortfoliosProviders = ({ children }) => {
   };
 
   useEffect(() => {
-    getPortfolios();
-    getTeams();
-  }, []);
+    if (participant) {
+      getPortfolios();
+      getTeams();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [participant]);
 
   // console.log(portfoliosObtained);
 

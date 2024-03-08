@@ -23,8 +23,6 @@ const Login = ({ isAuthenticated }) => {
   const [error, setError] = useState(false);
   const { getLogin } = useContext(UserContext);
 
-  // console.log(isAuthenticated);
-
   const getUserData = (e) => {
     setUserData({
       ...userData,
@@ -38,7 +36,6 @@ const Login = ({ isAuthenticated }) => {
     if (user && password && user?.length >= 2 && password?.length >= 2) {
       setError(false);
       getLogin(userData);
-      // alertify.success(messageLogin);
     } else {
       setError(true);
       alertify.error("All fields are mandatory!!");
@@ -137,7 +134,7 @@ const Login = ({ isAuthenticated }) => {
                     {error && (
                       <div>
                         <p className={classes.error}>
-                          All fields are oligatory
+                          All fields are mandatory
                         </p>
                       </div>
                     )}

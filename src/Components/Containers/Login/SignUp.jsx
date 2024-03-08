@@ -32,7 +32,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    console.log(event.target);
     setStateSelected(event.target.value);
   };
 
@@ -61,7 +60,7 @@ const Login = () => {
       password?.length <= 2
     ) {
       setError(true);
-      alertify.error("All fields are oligatory!!");
+      alertify.error("All fields are mandatory!!");
       setTimeout(() => setError(false), 2000);
     } else {
       setError(false);
@@ -227,7 +226,7 @@ const Login = () => {
                     {error && (
                       <div>
                         <p className={classes.error}>
-                          All fields are oligatory
+                          All fields are mandatory
                         </p>
                       </div>
                     )}

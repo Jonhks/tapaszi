@@ -15,10 +15,6 @@ export default function SelectVariants({
   handleChange,
   name,
 }) {
-  // console.log(port);
-  // console.log(options);
-  // console.log(indexTeam);
-  // console.log(options[indexPortfoli]);
   return (
     <FormControl
       variant="standard"

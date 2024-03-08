@@ -22,6 +22,7 @@ const MyPortfolio = () => {
   const [portfolios, setPortfolios] = useState([]);
   const [error, setError] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [duplicates, setDuplicates] = useState(false);
 
   const {
     portfoliosObtained,
@@ -66,7 +67,7 @@ const MyPortfolio = () => {
     setValue(newValue);
   };
 
-  const handleChangeInput = (e, port, index) => {
+  const handleChangeInput = (e) => {
     const newData = portfolios.map((el) => {
       if (el?.newPortfolio) {
         return {
@@ -86,6 +87,12 @@ const MyPortfolio = () => {
     const portFolioEditable = [
       ...newData?.filter((port) => port?.newPortfolio),
     ];
+    if (portFolioEditable[0]?.teams?.includes(port)) {
+      setDuplicates(true);
+      port = "";
+      alertify.error("You cannot enter duplicate fields!!");
+      setTimeout(() => setDuplicates(false), 3000);
+    }
     if (portFolioEditable[0]) {
       const newPort = portFolioEditable[0]?.teams;
       newPort[index] = port;
@@ -138,6 +145,8 @@ const MyPortfolio = () => {
     }
   };
 
+  // #238b94
+
   const sendPortfolio = (port) => {
     const swalWithBootstrapButtons = Swal.mixin({});
     swalWithBootstrapButtons
@@ -145,6 +154,7 @@ const MyPortfolio = () => {
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
+        confirmButtonColor: "#238b94",
         showCancelButton: true,
         confirmButtonText: "Yes, send it to!",
         cancelButtonText: "No, cancel!",
@@ -185,19 +195,17 @@ const MyPortfolio = () => {
     const swalWithBootstrapButtons = Swal.mixin({});
     swalWithBootstrapButtons
       .fire({
-        title: "Are you sure?",
+        title: `Are you sure to delete the portfolio ${portId}`,
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
+        confirmButtonColor: "#238b94",
         confirmButtonText: "Yes, delete it!",
         cancelButtonText: "No, cancel!",
         reverseButtons: true,
       })
       .then(async (result) => {
         if (result.isConfirmed) {
-          // const newData = [...portfolios];
-          // newData.filter((el) => el?.id !== portId);
-          // console.log(newData, portId);
           setPortfolios(portfolios?.filter((el) => el?.id !== portId));
           await removeportfolio(portId);
           try {
@@ -271,7 +279,7 @@ const MyPortfolio = () => {
       });
   };
 
-  console.log(portfolios);
+  // console.log(portfolios);
 
   return (
     <Grid
@@ -388,7 +396,14 @@ const MyPortfolio = () => {
                           {error && (
                             <div>
                               <p className={classes.error}>
-                                All fields are oligatory
+                                All fields are mandatory!!
+                              </p>
+                            </div>
+                          )}
+                          {duplicates && (
+                            <div>
+                              <p className={classes.error}>
+                                You cannot enter duplicate fields!!
                               </p>
                             </div>
                           )}
@@ -398,7 +413,7 @@ const MyPortfolio = () => {
                           >
                             <Input
                               required
-                              type="number"
+                              type="text"
                               value={port?.championshipPoints}
                               sx={{ width: "80%", m: 1 }}
                               id="input-with-icon-adornment"
@@ -411,13 +426,7 @@ const MyPortfolio = () => {
                                   <EmojiEventsOutlinedIcon color="white" />
                                 </InputAdornment>
                               }
-                              onChange={(e) =>
-                                handleChangeInput(
-                                  e?.target,
-                                  port,
-                                  indexPortfolio
-                                )
-                              }
+                              onChange={(e) => handleChangeInput(e?.target)}
                             />
                           </Grid>
                         </Grid>

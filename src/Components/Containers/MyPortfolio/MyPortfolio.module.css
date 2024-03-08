@@ -48,9 +48,9 @@
 }
 
 .tabComponent {
-  color: white;
-  font: 20px;
-  font-weight: bold;
+  color: white !important;
+  font: 20px !important;
+  font-weight: bold !important;
 }
 
 .activeTab {
@@ -66,11 +66,12 @@
 
 .championshipPoints::after {
   border-bottom: 2px solid white;
+  font-size: 18px;
 }
 
 .championshipPoints,
 .championshipPoints svg {
-  color: white;
+  color: white !important;
 }
 
 .btnSubmit,

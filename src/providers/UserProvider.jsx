@@ -9,10 +9,20 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
   const [states, setStates] = useState([]);
 
   useEffect(() => {
+    if (JSON.parse(localStorage.getItem("userTapaszi")) !== null) {
+      setIsAuthenticated(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.parse(localStorage.getItem("userTapaszi"))]);
+
+  useEffect(() => {
     if (isAuthenticated) {
-      setTimeout(() => {
-        navigate("/home");
-      }, 1500);
+      setTimeout(
+        () => {
+          navigate("/home");
+        },
+        JSON.parse(localStorage.getItem("userTapaszi")) !== null ? 500 : 1500
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
@@ -40,12 +50,14 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
       .then((response) => {
         if (response?.data?.success === true) {
           setIsAuthenticated(true);
+          localStorage.setItem("userTapaszi", JSON.stringify(postUser));
         } else if (
           response?.data?.success === false &&
           response?.data?.error?.description ===
             "The participant is already registered!"
         ) {
           setIsAuthenticated(true);
+          localStorage.setItem("userTapaszi", JSON.stringify(postUser));
         } else {
           setIsAuthenticated(false);
         }
@@ -71,7 +83,10 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
       .then((response) => {
         if (response?.data?.success === true) {
           alertify.success("User successfully logged in");
-
+          localStorage.setItem(
+            "userTapaszi",
+            JSON.stringify(response?.data?.data)
+          );
           setIsAuthenticated(true);
         } else if (
           response?.data?.success === false &&

@@ -22,7 +22,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import { useLocation } from "react-router-dom";
 import classes from "./Menu.module.css";
 import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 const drawerWidth = 240;
 
@@ -137,6 +136,13 @@ export default function MiniDrawer({
     setOpen(false);
   };
 
+  const removeUser = () => {
+    localStorage.removeItem("userTapaszi");
+    setIsAuthenticated(false);
+    navigate("/login");
+    console.log("logout");
+  };
+
   return (
     <>
       {!hideMenu ? (
@@ -181,7 +187,11 @@ export default function MiniDrawer({
             </DrawerHeader>
             <Divider />
             {open && (
-              <Typography className={classes.titleDrawer}>User Name</Typography>
+              <Typography className={classes.titleDrawer}>
+                {JSON.parse(localStorage.getItem("userTapaszi"))?.name
+                  ? JSON.parse(localStorage.getItem("userTapaszi"))?.name
+                  : "Username"}
+              </Typography>
             )}
             <List>
               {[
@@ -211,9 +221,7 @@ export default function MiniDrawer({
                         }}
                         onClick={() => {
                           if (el?.id === "history") return;
-                          el?.id !== "logOut"
-                            ? navigate(el?.id)
-                            : setIsAuthenticated(false);
+                          el?.id !== "logOut" ? navigate(el?.id) : removeUser();
                         }}
                       >
                         <ListItemIcon

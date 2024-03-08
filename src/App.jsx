@@ -8,7 +8,7 @@ import "../src/";
 
 const App = () => {
   // ?! Quitar true en login
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     // <ThemeProvider theme={theme}>
