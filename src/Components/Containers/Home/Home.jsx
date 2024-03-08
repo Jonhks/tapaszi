@@ -108,12 +108,12 @@ const Home = () => {
           xs={12}
           className={classes.containerBtn}
         >
-          <Button
+          {/* <Button
             variant="contained"
             onClick={() => setShowTable((showTable) => !showTable)}
           >
             {!showTable ? "Show table" : "Hide table"}
-          </Button>
+          </Button> */}
         </Grid>
         <Zoom in={showTable}>
           <Grid
