@@ -125,8 +125,8 @@ export default function CustomizedTables({
       >
         <TableHead>
           <TableRow className={classes?.tableRow}>
-            <StyledTableCell>PortfolioName</StyledTableCell>
-            <StyledTableCell>PortFolio Weigth</StyledTableCell>
+            <StyledTableCell>Portfolio Name</StyledTableCell>
+            <StyledTableCell>PortFolio Weight</StyledTableCell>
             <StyledTableCell>Team1</StyledTableCell>
             <StyledTableCell>Team2</StyledTableCell>
             <StyledTableCell>Team3</StyledTableCell>
@@ -136,7 +136,7 @@ export default function CustomizedTables({
             <StyledTableCell>Team7</StyledTableCell>
             <StyledTableCell>Team8</StyledTableCell>
             <StyledTableCell>Score</StyledTableCell>
-            <StyledTableCell>Champioship Game Point</StyledTableCell>
+            <StyledTableCell>Championship Game Points</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
