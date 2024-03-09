@@ -4,6 +4,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Backdrop from "../Components/UI/Backdrop/Backdrop";
 import UserProvider from "../providers/UserProvider";
 import PortfoliosProvider from "../providers/PortfoliosProviders";
+import HomeProvider from "../providers/HomeProvider";
 
 const Login = React.lazy(() => import("../Components/Containers/Login/Login"));
 const SignUp = React.lazy(() =>
@@ -73,11 +74,13 @@ const routes = ({ isAuthenticated, setIsAuthenticated }) => {
         exact
         path="/home"
         element={
-          <Suspense fallback={<Backdrop show />}>
-            <PrivateRoute isAuthenticated={isAuthenticated}>
-              <Home></Home>
-            </PrivateRoute>
-          </Suspense>
+          <HomeProvider>
+            <Suspense fallback={<Backdrop show />}>
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Home></Home>
+              </PrivateRoute>
+            </Suspense>
+          </HomeProvider>
         }
       />
       <Route

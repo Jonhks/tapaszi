@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Grid, Button, Zoom } from "@mui/material";
+import React, { useState, useContext } from "react";
+import { Grid, Zoom } from "@mui/material";
 import classes from "./Home.module.css";
 import Table from "../../UI/Table/Table";
+import HomeContext from "../../../context/HomeContext";
 
 const Home = () => {
+  const { participantScore, othersParticipants } = useContext(HomeContext);
   const [selected, setSelected] = useState("first");
-  const [showTable, setShowTable] = useState(false);
   return (
     <Grid
       item
@@ -107,20 +108,16 @@ const Home = () => {
           item
           xs={12}
           className={classes.containerBtn}
-        >
-          {/* <Button
-            variant="contained"
-            onClick={() => setShowTable((showTable) => !showTable)}
-          >
-            {!showTable ? "Show table" : "Hide table"}
-          </Button> */}
-        </Grid>
-        <Zoom in={showTable}>
+        ></Grid>
+        <Zoom in={true}>
           <Grid
             item
             xs={12}
           >
-            <Table />
+            <Table
+              participantScore={participantScore}
+              othersParticipants={othersParticipants}
+            />
           </Grid>
         </Zoom>
       </Grid>

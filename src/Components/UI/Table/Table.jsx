@@ -39,75 +39,81 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  portfolioEntry,
-  porfolioweight,
-  team1,
-  team2,
-  team3,
-  team4,
-  team5,
-  team6,
-  team7,
-  team8,
-  score,
-  champGamePoint
-) {
-  return {
-    portfolioEntry,
-    porfolioweight,
-    team1,
-    team2,
-    team3,
-    team4,
-    team5,
-    team6,
-    team7,
-    team8,
+export default function CustomizedTables({
+  participantScore,
+  othersParticipants,
+}) {
+  function createData(
+    portfolioName,
+    portfolioWeight,
+    team1Name,
+    team2Name,
+    team3Name,
+    team4Name,
+    team5Name,
+    team6Name,
+    team7Name,
+    team8Name,
     score,
     champGamePoint,
-  };
-}
+    paid
+  ) {
+    return {
+      portfolioName,
+      portfolioWeight,
+      team1Name,
+      team2Name,
+      team3Name,
+      team4Name,
+      team5Name,
+      team6Name,
+      team7Name,
+      team8Name,
+      score,
+      champGamePoint,
+      paid,
+    };
+  }
 
-const rows = [
-  createData(
-    "Andersen N1",
-    "5.625",
-    "Fla Atlantic 9",
-    "San Diego St5",
-    "Duke 4",
-    "Winner of Arizona/Missisipi St 11",
-    "Labama 1",
-    "Kansas St3",
-    "Penn St 10",
-    "Texas 2",
-    "0.0",
-    "139"
-  ),
-  createData(
-    "Andersen N1",
-    5.625,
-    "Fla Atlantic 9",
-    "San Diego St5",
-    "Duke 4",
-    "Winner of Arizona/Missisipi St 11",
-    "Labama 1",
-    "Kansas St3",
-    "Penn St 10",
-    "Texas 2",
-    "0.0",
-    "139"
-  ),
-  createData(""),
-  createData(""),
-  createData(""),
-  createData(""),
-  createData(""),
-  createData(""),
-  createData(""),
-];
+  const participant = participantScore;
+  const others = othersParticipants;
+  const rows = [
+    participant?.map((row) =>
+      createData(
+        row?.portfolioName,
+        row?.portfolioWeight,
+        row?.team1Name,
+        row?.team2Name,
+        row?.team3Name,
+        row?.team4Name,
+        row?.team5Name,
+        row?.team6Name,
+        row?.team7Name,
+        row?.team8Name,
+        row?.score,
+        row?.championshipPoints,
+        row?.paid
+      )
+    ),
+    others?.map((row) =>
+      createData(
+        row?.portfolioName,
+        row?.portfolioWeight,
+        row?.team1Name,
+        row?.team2Name,
+        row?.team3Name,
+        row?.team4Name,
+        row?.team5Name,
+        row?.team6Name,
+        row?.team7Name,
+        row?.team8Name,
+        row?.score,
+        row?.championshipPoints,
+        row?.paid
+      )
+    ),
+  ];
 
-export default function CustomizedTables() {
   return (
     <TableContainer
       component={Paper}
@@ -118,8 +124,8 @@ export default function CustomizedTables() {
         aria-label="customized table"
       >
         <TableHead>
-          <TableRow className={classes.tableRow}>
-            <StyledTableCell>Portfolio Entry</StyledTableCell>
+          <TableRow className={classes?.tableRow}>
+            <StyledTableCell>PortfolioName</StyledTableCell>
             <StyledTableCell>PortFolio Weigth</StyledTableCell>
             <StyledTableCell>Team1</StyledTableCell>
             <StyledTableCell>Team2</StyledTableCell>
@@ -134,28 +140,27 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, i) => (
+          {rows.flat()?.map((row, i) => (
             <StyledTableRow key={i}>
               <StyledTableCell
                 component="th"
                 scope="row"
               >
-                {row.portfolioEntry}
+                {/* {console.log(row)} */}
+                {row?.portfolioName}
               </StyledTableCell>
-              <StyledTableCell>{row.porfolioweight}</StyledTableCell>
-              <StyledTableCell>{row.team1}</StyledTableCell>
-              <StyledTableCell>{row.team2}</StyledTableCell>
-              <StyledTableCell>{row.team3}</StyledTableCell>
-              <StyledTableCell>{row.team4}</StyledTableCell>
-              <StyledTableCell>{row.team5}</StyledTableCell>
-              <StyledTableCell>{row.team6}</StyledTableCell>
-              <StyledTableCell>{row.team7}</StyledTableCell>
-              <StyledTableCell>{row.team8}</StyledTableCell>
-              <StyledTableCell>{row.score}</StyledTableCell>
+              <StyledTableCell>{row?.portfolioWeight}</StyledTableCell>
+              <StyledTableCell>{row?.team1Name}</StyledTableCell>
+              <StyledTableCell>{row?.team2Name}</StyledTableCell>
+              <StyledTableCell>{row?.team3Name}</StyledTableCell>
+              <StyledTableCell>{row?.team4Name}</StyledTableCell>
+              <StyledTableCell>{row?.team5Name}</StyledTableCell>
+              <StyledTableCell>{row?.team6Name}</StyledTableCell>
+              <StyledTableCell>{row?.team7Name}</StyledTableCell>
+              <StyledTableCell>{row?.team8Name}</StyledTableCell>
+              <StyledTableCell>{row?.score}</StyledTableCell>
               <StyledTableCell
-                className={`${i === 0 && classes.green} ${
-                  i === 1 && classes.red
-                }`}
+                className={`${row?.paid ? classes.green : classes.red} `}
               >
                 {row.champGamePoint}
               </StyledTableCell>
