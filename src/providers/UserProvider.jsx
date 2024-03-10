@@ -49,15 +49,19 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
       })
       .then((response) => {
         if (response?.data?.success === true) {
-          setIsAuthenticated(true);
-          localStorage.setItem("userTapaszi", JSON.stringify(postUser));
+          getLogin({
+            user: user?.email,
+            password: user?.password,
+          });
         } else if (
           response?.data?.success === false &&
           response?.data?.error?.description ===
             "The participant is already registered!"
         ) {
-          setIsAuthenticated(true);
-          localStorage.setItem("userTapaszi", JSON.stringify(postUser));
+          getLogin({
+            user: user?.email,
+            password: user?.password,
+          });
         } else {
           setIsAuthenticated(false);
         }

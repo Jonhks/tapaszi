@@ -7,6 +7,7 @@ const PortfoliosProviders = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [teams, setTeams] = useState([]);
   const [participant, setParticipant] = useState(null);
+  const [errorSavePortfolio, setErrorSavePortfolio] = useState(false);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("userTapaszi")) !== null) {
@@ -75,6 +76,15 @@ const PortfoliosProviders = ({ children }) => {
       })
       .then((response) => {
         console.log(response);
+        if (
+          !response?.data.success &&
+          response?.data?.error?.description ===
+            "Can't register portfolio, tournament already started."
+        ) {
+          setIsLoading(false);
+          setErrorSavePortfolio(true);
+          return;
+        }
         getPortfolios();
       })
       .catch((error) => {
@@ -151,6 +161,8 @@ const PortfoliosProviders = ({ children }) => {
         teams,
         postNewPortfolio,
         removeportfolio,
+        errorSavePortfolio,
+        setErrorSavePortfolio,
       }}
     >
       {children}

@@ -126,7 +126,7 @@ export default function CustomizedTables({
         <TableHead>
           <TableRow className={classes?.tableRow}>
             <StyledTableCell>Portfolio Name</StyledTableCell>
-            <StyledTableCell>PortFolio Weight</StyledTableCell>
+            <StyledTableCell>Portfolio Weight</StyledTableCell>
             <StyledTableCell>Team1</StyledTableCell>
             <StyledTableCell>Team2</StyledTableCell>
             <StyledTableCell>Team3</StyledTableCell>

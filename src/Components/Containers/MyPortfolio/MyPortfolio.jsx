@@ -9,7 +9,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import classes from "./MyPortfolio.module.css";
-import { BasquetIcon, PodiumIcon, BallIcon } from "../../../assets/icons/icons";
+import { BasquetIcon, BallIcon } from "../../../assets/icons/icons";
 import Dropdown from "../../UI/Inputs/Dropdown";
 import PortfoliosContext from "../../../context/PortfoliosContext";
 import Loader from "../../UI/BallLoader/BallLoader";
@@ -23,6 +23,7 @@ const MyPortfolio = () => {
   const [error, setError] = useState(false);
   const [editing, setEditing] = useState(false);
   const [duplicates, setDuplicates] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const {
     portfoliosObtained,
@@ -30,12 +31,26 @@ const MyPortfolio = () => {
     teams,
     postNewPortfolio,
     removeportfolio,
+    errorSavePortfolio,
+    setErrorSavePortfolio,
   } = useContext(PortfoliosContext);
 
   useEffect(() => {
     setPortfolios(portfoliosObtained);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [portfoliosObtained]);
+
+  useEffect(() => {
+    if (errorSavePortfolio) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Can't register portfolio, tournament already started.",
+      });
+      setTimeout(() => setErrorSavePortfolio(false), 2000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorSavePortfolio]);
 
   function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -72,17 +87,18 @@ const MyPortfolio = () => {
       if (el?.newPortfolio) {
         return {
           ...el,
-          championshipPoints: e.value,
+          championshipPoints: e?.target?.value,
         };
       } else {
         return el;
       }
     });
-
     setPortfolios(newData);
+    setFocused(true);
   };
 
   const handleChangeSelect = (port, index) => {
+    setFocused(false);
     const newData = [...portfolios];
     const portFolioEditable = [
       ...newData?.filter((port) => port?.newPortfolio),
@@ -409,28 +425,33 @@ const MyPortfolio = () => {
                               </p>
                             </div>
                           )}
-                          <Grid
-                            item
-                            xs={6}
-                          >
-                            <Input
-                              required
-                              type="text"
-                              value={port?.championshipPoints}
-                              sx={{ width: "80%", m: 1 }}
-                              id="input-with-icon-adornment"
-                              name="championshipPoints"
-                              readOnly={!!port?.id}
-                              placeholder="Championship Points"
-                              className={classes.championshipPoints}
-                              startAdornment={
-                                <InputAdornment position="start">
-                                  <EmojiEventsOutlinedIcon color="white" />
-                                </InputAdornment>
-                              }
-                              onChange={(e) => handleChangeInput(e?.target)}
-                            />
-                          </Grid>
+
+                          <span>
+                            <p>
+                              <Input
+                                required
+                                type="text"
+                                autoFocus={focused}
+                                value={
+                                  port?.championshipPoints >= 1
+                                    ? port?.championshipPoints
+                                    : ""
+                                }
+                                sx={{ width: "80%", m: 1 }}
+                                id="input-with-icon-adornment"
+                                name="championshipPoints"
+                                readOnly={!!port?.id}
+                                placeholder="Championship Points"
+                                className={classes.championshipPoints}
+                                startAdornment={
+                                  <InputAdornment position="start">
+                                    <EmojiEventsOutlinedIcon color="white" />
+                                  </InputAdornment>
+                                }
+                                onChange={(e) => handleChangeInput(e)}
+                              />
+                            </p>
+                          </span>
                         </Grid>
                         <Grid
                           container
