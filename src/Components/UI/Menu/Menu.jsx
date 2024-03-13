@@ -119,6 +119,7 @@ export default function MiniDrawer({
     if (
       currentLocation?.pathname === "/" ||
       currentLocation?.pathname === "/login" ||
+      currentLocation?.pathname === "/forgot" ||
       currentLocation?.pathname === "/signup"
     ) {
       setHideMenu(true);
