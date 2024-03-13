@@ -21,6 +21,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import HttpsIcon from "@mui/icons-material/Https";
 import FlagIcon from "@mui/icons-material/Flag";
 import PersonIcon from "@mui/icons-material/Person";
+import SecurityIcon from "@mui/icons-material/Security";
 import classes from "./Login.module.css";
 
 const Login = () => {
@@ -105,7 +106,7 @@ const Login = () => {
                     sx={{ width: "80%", m: 2 }}
                     id="input-with-icon-adornment"
                     name="name"
-                    placeholder="Name"
+                    placeholder="First Name"
                     startAdornment={
                       <InputAdornment position="start">
                         <PersonIcon color="white" />
@@ -203,6 +204,20 @@ const Login = () => {
                     startAdornment={
                       <InputAdornment position="start">
                         <HttpsIcon color="white" />
+                      </InputAdornment>
+                    }
+                    onChange={(e) => getUserData(e)}
+                  />
+                  <Input
+                    required
+                    type={"password"}
+                    sx={{ width: "80%", m: 2 }}
+                    id="input-with-icon-adornment"
+                    name="code"
+                    placeholder="Code"
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <SecurityIcon color="white" />
                       </InputAdornment>
                     }
                     onChange={(e) => getUserData(e)}

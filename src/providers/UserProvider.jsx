@@ -31,7 +31,6 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
     // const urlRegister = `${process.env.REACT_APP_BASE_DOMAIN}/participants/register?api-key=${process.env.REACT_APP_APIKEY}`;
     const urlRegister =
       "https://ercom-b.dev:8443/com.tapaszi.ws/rest/participants/register?api-key=TESTAPIKEY";
-    console.log(user);
     const postUser = {
       name: user?.name?.toUpperCase(),
       surname: user?.surname?.toUpperCase(),
@@ -39,6 +38,7 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
       username: user?.username,
       password: user?.password,
       stateId: user?.stateId,
+      code: user?.code,
     };
 
     axios
@@ -58,10 +58,8 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
           response?.data?.error?.description ===
             "The participant is already registered!"
         ) {
-          getLogin({
-            user: user?.email,
-            password: user?.password,
-          });
+          alertify.error("The participant is already registered!");
+          setTimeout(() => navigate("/login"), 1000);
         } else {
           setIsAuthenticated(false);
         }

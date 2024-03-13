@@ -105,7 +105,7 @@ const MyPortfolio = () => {
     ];
     if (portFolioEditable[0]?.teams?.includes(port)) {
       setDuplicates(true);
-      port = "";
+      port = false;
       alertify.error("You cannot enter duplicate fields!!");
       setTimeout(() => setDuplicates(false), 3000);
     }
@@ -133,8 +133,6 @@ const MyPortfolio = () => {
     const portFolioEditable = [
       ...newData?.filter((port) => port?.newPortfolio),
     ][0];
-    console.log(!portFolioEditable?.teams?.some((el) => el === false));
-
     if (
       portFolioEditable?.championshipPoints >= 1 &&
       !portFolioEditable?.teams?.some((el) => el === false)
@@ -154,7 +152,7 @@ const MyPortfolio = () => {
     ) {
       setError(true);
       setTimeout(() => setError(false), 1000);
-      alertify.error("You must select all equipment!");
+      alertify.error("You must select all Teams!");
     } else {
       setError(true);
       setTimeout(() => setError(false), 1000);
@@ -199,7 +197,7 @@ const MyPortfolio = () => {
         ) {
           swalWithBootstrapButtons.fire({
             title: "Cancelled",
-            text: "Your imaginary portfolio is safe :)",
+            text: "Don't worry, you can still continue editing your portfolio :)",
             icon: "error",
           });
         }
@@ -244,7 +242,7 @@ const MyPortfolio = () => {
         ) {
           swalWithBootstrapButtons.fire({
             title: "Cancelled",
-            text: "Your imaginary file is safe :)",
+            text: "Don't worry, you can still continue editing your portfolio :)",
             icon: "error",
           });
         }
@@ -289,7 +287,7 @@ const MyPortfolio = () => {
         ) {
           swalWithBootstrapButtons.fire({
             title: "Cancelled",
-            text: "Your imaginary file is safe :)",
+            text: "Don't worry, you can still continue editing your portfolio :)",
             icon: "error",
           });
         }

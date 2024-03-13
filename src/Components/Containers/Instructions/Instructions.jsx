@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Box } from "@mui/material";
 import classes from "./Instructions.module.css";
+import HomeContext from "../../../context/HomeContext";
 
 const Instructions = () => {
+  const { popona } = useContext(HomeContext);
+
   return (
     <Grid
       item
@@ -23,7 +26,7 @@ const Instructions = () => {
             className={classes.boxInstructions}
           >
             <p className={classes.titleInstructions}>
-              Welcome to the 20th running of the Portfolio Pool.
+              WELCOME TO {popona.toUpperCase()}.
             </p>
             <Grid
               item
