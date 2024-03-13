@@ -101,7 +101,9 @@ const routes = ({ isAuthenticated, setIsAuthenticated }) => {
         path="/instructions"
         element={
           <Suspense fallback={<Backdrop show />}>
-            <Instructions />
+            <HomeProvider>
+              <Instructions />
+            </HomeProvider>
           </Suspense>
         }
       />

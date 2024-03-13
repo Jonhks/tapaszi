@@ -17,12 +17,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { useLocation } from "react-router-dom";
 import classes from "./Menu.module.css";
 import { useNavigate } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import HistoryIcon from "@mui/icons-material/History";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { BasquetIcon, BallIcon } from "../../../assets/icons/icons";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -143,6 +145,14 @@ export default function MiniDrawer({
     console.log("logout");
   };
 
+  const Icons = [
+    <BallIcon />,
+    <BasquetIcon />,
+    <ReceiptLongIcon />,
+    <HistoryIcon />,
+    <LogoutIcon />,
+  ];
+
   return (
     <>
       {!hideMenu ? (
@@ -196,9 +206,9 @@ export default function MiniDrawer({
             <List>
               {[
                 { text: "Home", id: "home" },
-                { text: "My Portfolio", id: "myPorfolio" },
+                { text: "My Portfolios", id: "myPorfolio" },
                 { text: "Instructions", id: "instructions" },
-                { text: "History", id: "history" },
+                { text: "Stats & History", id: "history" },
                 { text: "LogOut", id: "logOut" },
               ].map((el, index) => (
                 <Grid
@@ -232,7 +242,8 @@ export default function MiniDrawer({
                             color: "white",
                           }}
                         >
-                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                          {Icons[index]}
+                          {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                         </ListItemIcon>
                         <ListItemText
                           primary={el?.text}

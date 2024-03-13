@@ -134,9 +134,6 @@ const PortfoliosProviders = ({ children }) => {
       })
       .then((response) => {
         console.log(response);
-        // setPortfoliosObtained(newData);
-        // getPortfolios();
-        // setIsLoading(true);
       })
       .catch((error) => {
         console.log(error);
