@@ -119,6 +119,7 @@ export default function MiniDrawer({
     if (
       currentLocation?.pathname === "/" ||
       currentLocation?.pathname === "/login" ||
+      currentLocation?.pathname === "/forgot" ||
       currentLocation?.pathname === "/signup"
     ) {
       setHideMenu(true);
@@ -230,7 +231,6 @@ export default function MiniDrawer({
                           px: 2.5,
                         }}
                         onClick={() => {
-                          if (el?.id === "history") return;
                           el?.id !== "logOut" ? navigate(el?.id) : removeUser();
                         }}
                       >

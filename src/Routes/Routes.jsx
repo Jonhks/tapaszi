@@ -5,8 +5,12 @@ import Backdrop from "../Components/UI/Backdrop/Backdrop";
 import UserProvider from "../providers/UserProvider";
 import PortfoliosProvider from "../providers/PortfoliosProviders";
 import HomeProvider from "../providers/HomeProvider";
+import HistoryProvider from "../providers/HistoryProvider";
 
 const Login = React.lazy(() => import("../Components/Containers/Login/Login"));
+const Forgot = React.lazy(() =>
+  import("../Components/Containers/Login/Forgot")
+);
 const SignUp = React.lazy(() =>
   import("../Components/Containers/Login/SignUp")
 );
@@ -50,6 +54,20 @@ const routes = ({ isAuthenticated, setIsAuthenticated }) => {
           >
             <Suspense fallback={<Backdrop show />}>
               <Login />
+            </Suspense>
+          </UserProvider>
+        }
+      />
+      <Route
+        exact
+        path="/forgot"
+        element={
+          <UserProvider
+            isAuthenticated={isAuthenticated}
+            setIsAuthenticated={setIsAuthenticated}
+          >
+            <Suspense fallback={<Backdrop show />}>
+              <Forgot />
             </Suspense>
           </UserProvider>
         }
@@ -112,7 +130,9 @@ const routes = ({ isAuthenticated, setIsAuthenticated }) => {
         path="/history"
         element={
           <Suspense fallback={<Backdrop show />}>
-            <History />
+            <HistoryProvider>
+              <History />
+            </HistoryProvider>
           </Suspense>
         }
       />

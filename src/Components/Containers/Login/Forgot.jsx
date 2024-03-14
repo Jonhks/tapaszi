@@ -14,14 +14,13 @@ import {
   InputAdornment,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import HttpsIcon from "@mui/icons-material/Https";
 import classes from "./Login.module.css";
 
-const Login = ({ isAuthenticated }) => {
+const Forgot = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [error, setError] = useState(false);
-  const { getLogin } = useContext(UserContext);
+  const { postForgot } = useContext(UserContext);
 
   const getUserData = (e) => {
     setUserData({
@@ -32,10 +31,10 @@ const Login = ({ isAuthenticated }) => {
 
   const validateForm = () => {
     setError(true);
-    const { user, password } = userData;
-    if (user && password && user?.length >= 2 && password?.length >= 2) {
+    const { user } = userData;
+    if (user && user?.length >= 2) {
       setError(false);
-      getLogin(userData);
+      postForgot(userData);
     } else {
       setError(true);
       alertify.error("All fields are mandatory!!");
@@ -61,10 +60,14 @@ const Login = ({ isAuthenticated }) => {
           <Container maxWidth="sm">
             <Box className={classes.box}>
               <div className={classes.head}>
-                <p className={classes.title}>Welcome to</p>
-                <p className={classes.titleTwo}>The Portfolio Pool</p>
-                <p className={classes.subtitle}>
-                  Enter your credential to login
+                <p className={classes.title}>Forgot</p>
+                <p className={classes.titleTwo}>Your password</p>
+                <p
+                  className={classes.subtitle}
+                  style={{ textAlign: "center" }}
+                >
+                  Enter your credential and we´ll send youm <br />a link with
+                  new password
                 </p>
               </div>
               <div className={classes.containerForm}>
@@ -88,29 +91,6 @@ const Login = ({ isAuthenticated }) => {
                     }
                     onChange={(e) => getUserData(e)}
                   />
-                  <Input
-                    required
-                    type={"password"}
-                    sx={{ width: "80%", m: 2 }}
-                    id="input-with-icon-adornment"
-                    name="password"
-                    placeholder="Password"
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <HttpsIcon color="white" />
-                      </InputAdornment>
-                    }
-                    onChange={(e) => getUserData(e)}
-                  />
-                  <div className={classes.containerCheckBox}>
-                    {/* <FormControlLabel
-                      control={<Checkbox />}
-                      label="Remember me"
-                    /> */}
-                    <span onClick={() => navigate("/forgot")}>
-                      Forgot password?
-                    </span>
-                  </div>
                   <Grid
                     item
                     xs={12}
@@ -125,7 +105,7 @@ const Login = ({ isAuthenticated }) => {
                       onClick={() => validateForm()}
                       sx={{ m: 2 }}
                     >
-                      Login
+                      Send
                     </Button>
                     {error && (
                       <div>
@@ -135,17 +115,15 @@ const Login = ({ isAuthenticated }) => {
                       </div>
                     )}
                   </Grid>
+                  <div
+                    className={classes.containerCheckBox}
+                    style={{ textAlign: "center" }}
+                  >
+                    <span onClick={() => navigate("/login")}>
+                      {"<"} Back to Login
+                    </span>
+                  </div>
                 </Grid>
-              </div>
-              <div className={classes.containerSignUp}>
-                <p>Don't have an account ?</p>
-                <div
-                  onClick={() => {
-                    navigate("/signup");
-                  }}
-                >
-                  Sign up
-                </div>
               </div>
             </Box>
           </Container>
@@ -155,4 +133,4 @@ const Login = ({ isAuthenticated }) => {
   );
 };
 
-export default Login;
+export default Forgot;

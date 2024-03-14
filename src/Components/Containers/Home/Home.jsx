@@ -54,10 +54,8 @@ const Home = () => {
                   participants out.
                 </p>
 
-                <p>
-                  Please use the menu to the left and select: My Portfolios to
-                </p>
-                <p>make your portfolio entries.</p>
+                <p>Please use the menu to the left and select:</p>
+                <p>My Portfolios to make your portfolio entries.</p>
                 <p>Rules are in the Instructions window.</p>
 
                 <p>

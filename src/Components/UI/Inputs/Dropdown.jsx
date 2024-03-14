@@ -25,7 +25,6 @@ export default function SelectVariants({
       <Select
         name={name}
         labelId="demo-simple-select-standard-label"
-        // id={id}
         readOnly={disabled}
         value={value}
         onChange={(e) => {

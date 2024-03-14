@@ -61,7 +61,7 @@ const PortfoliosProviders = ({ children }) => {
 
   const postNewPortfolio = (portfolio) => {
     console.log(portfoliosObtained?.length);
-    if (portfoliosObtained?.length + 1 >= 8) return;
+    if (portfoliosObtained?.length >= 8) return;
     console.log("se guarda");
     const urlLogin = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/portfolios/register?api-key=TESTAPIKEY&participant-id=${participant?.id}`;
     const postPortfolio = {
