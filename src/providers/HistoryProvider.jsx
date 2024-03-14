@@ -7,7 +7,7 @@ const HistoryProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [tournaments, setTournaments] = useState([]);
   const [pointsPerRound, setPointsPerRound] = useState([]);
-  const [selectedTournament, setSelectedTournament] = useState({});
+  const [selectedTournament, setSelectedTournament] = useState({ id: 1 });
   const [selectedScore, setSelectedScore] = useState({});
   const [selectedOrderBy, setSelectedOrderBy] = useState(1);
   const [arrHistory, setArrHistory] = useState([]);
