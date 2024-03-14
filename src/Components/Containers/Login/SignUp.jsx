@@ -42,10 +42,11 @@ const Login = () => {
       [e?.target?.name]: e?.target.value,
     });
   };
-
+  console.log(userData);
   const validateForm = () => {
     setError(true);
-    const { name, surname, email, stateId, username, password } = userData;
+    const { name, surname, email, stateId, username, password, code } =
+      userData;
     if (
       !name ||
       !surname ||
@@ -53,12 +54,14 @@ const Login = () => {
       !stateId ||
       !username ||
       !password ||
+      !code ||
       name?.length <= 2 ||
       surname?.length <= 2 ||
       (email?.length <= 2 && !email?.includes("@")) ||
       !stateId ||
       username?.length <= 2 ||
-      password?.length <= 2
+      password?.length <= 2 ||
+      code?.length <= 2
     ) {
       setError(true);
       alertify.error("All fields are mandatory!!");

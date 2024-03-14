@@ -66,7 +66,7 @@ const Forgot = ({ isAuthenticated }) => {
                   className={classes.subtitle}
                   style={{ textAlign: "center" }}
                 >
-                  Enter your credential and we´ll send youm <br />a link with
+                  Enter your credential and we´ll send your <br />a link with
                   new password
                 </p>
               </div>
