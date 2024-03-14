@@ -34,7 +34,7 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
     const postUser = {
       name: user?.name?.toUpperCase(),
       surname: user?.surname?.toUpperCase(),
-      email: user?.email,
+      email: user?.email.toLowerCase(),
       username: user?.username,
       password: user?.password,
       stateId: user?.stateId,
