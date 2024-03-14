@@ -5,6 +5,7 @@ import Backdrop from "../Components/UI/Backdrop/Backdrop";
 import UserProvider from "../providers/UserProvider";
 import PortfoliosProvider from "../providers/PortfoliosProviders";
 import HomeProvider from "../providers/HomeProvider";
+import HistoryProvider from "../providers/HistoryProvider";
 
 const Login = React.lazy(() => import("../Components/Containers/Login/Login"));
 const Forgot = React.lazy(() =>
@@ -129,7 +130,9 @@ const routes = ({ isAuthenticated, setIsAuthenticated }) => {
         path="/history"
         element={
           <Suspense fallback={<Backdrop show />}>
-            <History />
+            <HistoryProvider>
+              <History />
+            </HistoryProvider>
           </Suspense>
         }
       />

@@ -10,3 +10,13 @@
   font-size: 0.8rem !important;
   font-weight: bold !important;
 }
+
+.firstTableRow {
+  width: 100%;
+  background-color: #572d03;
+  color: #fff;
+  font-size: 2rem;
+  opacity: 0.8;
+  text-align: center;
+  padding: 15px 5px 0px 5px;
+}

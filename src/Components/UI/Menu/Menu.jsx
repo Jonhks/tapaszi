@@ -231,7 +231,6 @@ export default function MiniDrawer({
                           px: 2.5,
                         }}
                         onClick={() => {
-                          if (el?.id === "history") return;
                           el?.id !== "logOut" ? navigate(el?.id) : removeUser();
                         }}
                       >

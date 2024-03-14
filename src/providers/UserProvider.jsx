@@ -105,6 +105,34 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
         console.log(error);
       });
   };
+  const postForgot = (user) => {
+    const urlForgot =
+      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/participants/forgot?api-key=TESTAPIKEY";
+    const postUserLogin = {
+      user: user?.user,
+    };
+    axios
+      .post(urlForgot, JSON.stringify(postUserLogin), {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response?.data?.success === true) {
+          alertify.success("your new password has been sent");
+          setTimeout(() => navigate("/login"), 1800);
+        } else if (response?.data?.success === false) {
+          console.log(response);
+          alertify.error(
+            "an error has occurred, try again or contact support "
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const getStates = () => {
     const urlStates =
@@ -135,6 +163,7 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
         getLogin,
         getSignUp,
         states,
+        postForgot,
       }}
     >
       {children}

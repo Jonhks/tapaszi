@@ -20,7 +20,7 @@ const Forgot = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [error, setError] = useState(false);
-  const { getLogin } = useContext(UserContext);
+  const { postForgot } = useContext(UserContext);
 
   const getUserData = (e) => {
     setUserData({
@@ -30,16 +30,16 @@ const Forgot = ({ isAuthenticated }) => {
   };
 
   const validateForm = () => {
-    // setError(true);
-    // const { user, password } = userData;
-    // if (user && password && user?.length >= 2 && password?.length >= 2) {
-    //   setError(false);
-    //   getLogin(userData);
-    // } else {
-    //   setError(true);
-    //   alertify.error("All fields are mandatory!!");
-    //   setTimeout(() => setError(false), 2000);
-    // }
+    setError(true);
+    const { user } = userData;
+    if (user && user?.length >= 2) {
+      setError(false);
+      postForgot(userData);
+    } else {
+      setError(true);
+      alertify.error("All fields are mandatory!!");
+      setTimeout(() => setError(false), 2000);
+    }
   };
 
   return (
