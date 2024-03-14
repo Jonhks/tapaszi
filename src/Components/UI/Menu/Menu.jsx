@@ -143,7 +143,6 @@ export default function MiniDrawer({
     localStorage.removeItem("userTapaszi");
     setIsAuthenticated(false);
     navigate("/login");
-    console.log("logout");
   };
 
   const Icons = [

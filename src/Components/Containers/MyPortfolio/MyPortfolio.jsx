@@ -295,6 +295,7 @@ const MyPortfolio = () => {
   };
 
   // console.log(portfolios);
+  // console.log(teams);
 
   return (
     <Grid
@@ -393,13 +394,13 @@ const MyPortfolio = () => {
                               indexPortfolio={indexPortfolio}
                               indexTeam={indexTeam}
                               name={`name`}
-                              readOnly={true}
+                              readOnly={!!port?.id}
                               label={`Selection ${indexTeam + 1}`}
                               value={
                                 portfolios[indexPortfolio]?.teams[indexTeam]
                                   ?.name
                               }
-                              options={teams}
+                              options={!!port?.id ? port?.teams : teams}
                               handleChange={handleChangeSelect}
                             />
                           </div>

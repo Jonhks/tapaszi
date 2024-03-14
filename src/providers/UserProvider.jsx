@@ -60,6 +60,11 @@ const UserProvider = ({ children, isAuthenticated, setIsAuthenticated }) => {
         ) {
           alertify.error("The participant is already registered!");
           setTimeout(() => navigate("/login"), 1000);
+        } else if (
+          response?.data?.success === false &&
+          response?.data?.error?.description === "Invalid code."
+        ) {
+          alertify.error("Invalid code!!");
         } else {
           setIsAuthenticated(false);
         }
