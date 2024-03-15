@@ -8,6 +8,7 @@ const PortfoliosProviders = ({ children }) => {
   const [teams, setTeams] = useState([]);
   const [participant, setParticipant] = useState(null);
   const [errorSavePortfolio, setErrorSavePortfolio] = useState(false);
+  const [portXp, setPortXp] = useState(8);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("userTapaszi")) !== null) {
@@ -140,15 +141,34 @@ const PortfoliosProviders = ({ children }) => {
       });
   };
 
+  const getPortXP = () => {
+    const urlGetPortXP = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/parameters?api-key=TESTAPIKEY&parameter-key=PORTXP`;
+    axios
+      .get(urlGetPortXP, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      })
+      .then((response) => {
+        if (response?.data?.data) {
+          setPortXp(response?.data?.data?.value);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     if (participant) {
       getPortfolios();
       getTeams();
+      getPortXP();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [participant]);
 
-  // console.log(portfoliosObtained);
+  // console.log(portXp);
 
   return (
     <PortfoliosContext.Provider
@@ -160,6 +180,7 @@ const PortfoliosProviders = ({ children }) => {
         removeportfolio,
         errorSavePortfolio,
         setErrorSavePortfolio,
+        portXp,
       }}
     >
       {children}

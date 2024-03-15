@@ -7,7 +7,7 @@ const HomeProvider = ({ children }) => {
   const [participantScore, setParticipantScore] = useState([]);
   const [othersParticipants, setOthersParticipants] = useState([]);
   const [popona, setPopona] = useState("");
-  const [portfFoliosCount, setPortfoliosCount] = useState(null);
+  const [portfFoliosCount, setPortfoliosCount] = useState(0);
   const [participantsCount, setParticipantsCount] = useState(null);
   const [arrPayout, setArrPayout] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -69,6 +69,12 @@ const HomeProvider = ({ children }) => {
         },
       })
       .then((response) => {
+        if (
+          response?.data?.success === false &&
+          response?.data?.error?.description === "No records found."
+        ) {
+          setIsLoading(false);
+        }
         if (response?.data?.data) {
           setPortfoliosCount(response?.data?.data?.count);
         }

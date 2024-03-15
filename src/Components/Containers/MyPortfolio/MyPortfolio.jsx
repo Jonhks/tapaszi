@@ -33,6 +33,7 @@ const MyPortfolio = () => {
     removeportfolio,
     errorSavePortfolio,
     setErrorSavePortfolio,
+    portXp,
   } = useContext(PortfoliosContext);
 
   useEffect(() => {
