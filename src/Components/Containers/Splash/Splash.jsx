@@ -11,7 +11,7 @@ const Splash = () => {
       direction={"down"}
       in
     >
-      <div>
+      {/* <div>
         <div className={classes.ball}>
           <div className={classes.inner}>
             <div className={classes.line}></div>
@@ -21,6 +21,10 @@ const Splash = () => {
           </div>
         </div>
         <div className={classes.shadow}></div>
+      </div> */}
+      <div className={classes.container}>
+        <div className={classes.shadow}></div>
+        <div className={classes.ball}></div>
       </div>
     </Slide>
   );
