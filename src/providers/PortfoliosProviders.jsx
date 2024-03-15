@@ -41,7 +41,7 @@ const PortfoliosProviders = ({ children }) => {
   const getTeams = () => {
     setIsLoading(true);
     const urlGetTeams =
-      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/teams?api-key=TESTAPIKEY";
+      "https://ercom-b.dev:8443/com.tapaszi.ws/rest/teams?api-key=TESTAPIKEY&show-all=false";
 
     axios
       .get(urlGetTeams, {
