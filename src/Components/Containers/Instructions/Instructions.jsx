@@ -4,8 +4,7 @@ import classes from "./Instructions.module.css";
 import HomeContext from "../../../context/HomeContext";
 
 const Instructions = () => {
-  const { popona } = useContext(HomeContext);
-
+  const { popona, teamNa } = useContext(HomeContext);
   return (
     <Grid
       item
@@ -40,12 +39,12 @@ const Instructions = () => {
                 team’s seed and the round in which the win occurs.
               </p>
               <p className={classes.yellowSection}>
-                Using the example of TeamX, an 8 seed, if TeamX wins their first
-                round game, you earn 8 points. Should TeamX win their second
-                round game, you receive an additional 16 points (8 points
-                multiplied by 2nd round). Should Team 31 win the National
-                Championship, you will earn a total of 168 points (8 + 16 + 24 +
-                32 + 40 + 48).
+                Using the example of {teamNa?.value}, an 8 seed, if{" "}
+                {teamNa?.value} wins their first round game, you earn 8 points.
+                Should {teamNa?.value} win their second round game, you receive
+                an additional 16 points (8 points multiplied by 2nd round).
+                Should Team 31 win the National Championship, you will earn a
+                total of 168 points (8 + 16 + 24 + 32 + 40 + 48).
               </p>
               <p>
                 Similar to a portfolio manager, successful entries will best

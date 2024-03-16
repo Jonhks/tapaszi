@@ -11,6 +11,7 @@ const HomeProvider = ({ children }) => {
   const [participantsCount, setParticipantsCount] = useState(null);
   const [arrPayout, setArrPayout] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [teamNa, setTeamNa] = useState("");
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("userTapaszi")) !== null) {
@@ -52,6 +53,25 @@ const HomeProvider = ({ children }) => {
       .then((response) => {
         if (response?.data?.data) {
           setPopona(response?.data?.data?.value);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getTeamName = () => {
+    const urlGetTeamName = `https://ercom-b.dev:8443/com.tapaszi.ws/rest/parameters?api-key=TESTAPIKEY&parameter-key=TEAMNA`;
+
+    axios
+      .get(urlGetTeamName, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      })
+      .then((response) => {
+        if (response?.data?.data) {
+          setTeamNa(response?.data?.data);
         }
       })
       .catch((error) => {
@@ -127,6 +147,7 @@ const HomeProvider = ({ children }) => {
     if (participant) {
       getScores();
       getParameters();
+      getTeamName();
       getPortfoliosCount();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,6 +172,7 @@ const HomeProvider = ({ children }) => {
         participantsCount,
         arrPayout,
         isLoading,
+        teamNa,
       }}
     >
       {children}
