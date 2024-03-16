@@ -64,7 +64,7 @@ const Login = ({ isAuthenticated }) => {
                 <p className={classes.title}>Welcome to</p>
                 <p className={classes.titleTwo}>The Portfolio Pool</p>
                 <p className={classes.subtitle}>
-                  Enter your credential to login
+                  Enter your credentials to login
                 </p>
               </div>
               <div className={classes.containerForm}>

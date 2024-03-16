@@ -61,12 +61,12 @@ const Forgot = ({ isAuthenticated }) => {
             <Box className={classes.box}>
               <div className={classes.head}>
                 <p className={classes.title}>Forgot</p>
-                <p className={classes.titleTwo}>Your password</p>
+                <p className={classes.titleTwo}>Your password ?</p>
                 <p
                   className={classes.subtitle}
                   style={{ textAlign: "center" }}
                 >
-                  Enter your credential and we´ll send your <br />a link with
+                  Enter your credentials and we will send you a link with your
                   new password
                 </p>
               </div>
