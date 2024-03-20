@@ -39,12 +39,12 @@ const Instructions = () => {
                 team’s seed and the round in which the win occurs.
               </p>
               <p className={classes.yellowSection}>
-                Using the example of {teamNa?.value}, an 8 seed, if{" "}
-                {teamNa?.value} wins their first round game, you earn 8 points.
-                Should {teamNa?.value} win their second round game, you receive
-                an additional 16 points (8 points multiplied by 2nd round).
-                Should Team 31 win the National Championship, you will earn a
-                total of 168 points (8 + 16 + 24 + 32 + 40 + 48).
+                Using the example of Utah St., an 8 seed, if Utah St. wins their
+                first round game, you earn 8 points. Should Utah St. win their
+                second round game, you receive an additional 16 points (8 points
+                multiplied by 2nd round). Should Utah St. win the National
+                Championship, you will earn a total of 168 points (8 + 16 + 24 +
+                32 + 40 + 48).
               </p>
               <p>
                 Similar to a portfolio manager, successful entries will best
@@ -60,9 +60,9 @@ const Instructions = () => {
               <p className={classes.graySection}>
                 You can choose any 8 teams as part of your portfolio, regardless
                 of region and who they play. As an example, you may be convinced
-                that the winner of the 1st round game between Team 29 and Team
-                33 is going to win it all, but you are uncertain which of these
-                two teams will win. You can select BOTH teams as a part of your
+                that the winner of the 1st round game between Utah St. and TCU
+                is going to win it all, but you are uncertain which of these two
+                teams will win. You can select BOTH teams as a part of your
                 portfolio, which will guarantee one team earns points and stays
                 alive for upcoming rounds, but the other team will lose and earn
                 you 0 points.
@@ -74,7 +74,8 @@ const Instructions = () => {
               <p className={classes.blueSection}>
                 Scoring:
                 <br />
-                Play-in round win = 0.5 x seed <br />
+                Play-in round win = 0.5 x seed
+                <br />
                 Round of 64 win = 1 x seed
                 <br />
                 Round of 32 win = 2 x seed
@@ -99,17 +100,18 @@ const Instructions = () => {
                 You must submit these portfolios prior to Tuesday, March 19th at
                 1p CST along with payment. Any winning Play-in Game participant
                 will earn points equal to half of the seed. So, if you select
-                Team 45 (an 11 seed), and Team 45 wins, you will earn 5.5
-                points. Scoring in future rounds then remains the same (if Team
-                45 beats Team 23 in round 1, they will earn 11 points). Play-in
-                teams must be selected by the 1p CST deadline for Play-in Games.
-                If submitting after the cut-off, this will automatically select
-                the “Winner of” choice, and this will update as such through the
-                tournament. You can also select the Play-in Game Winner option
-                at the bottom of the drop-down as part of your portfolio.
+                Colorado St. (a 10 seed), and Colorado St. wins, you will earn 5
+                points. Scoring in future rounds then remains the same (if
+                Colorado St. beats Texas in round 1, they will earn 10 points).
+                Play-in teams must be selected by the 1p CST deadline for
+                Play-in Games. If submitting after the cut-off, the individual
+                teams will disappear and the “Winner” choice at the bottom of
+                the drop-down must be selected. You can also select the Play-in
+                Game Winner option at the bottom of the drop-down as part of
+                your portfolio prior to the cutoff time.
               </p>
               <p className={classes.greenSection}>
-                All portfolios MUST be received by 1am CST on Thursday, March
+                All portfolios MUST be received by 11pm CST on Thursday, March
                 20th. Once the portfolios have been submitted at that time, the
                 picks of each portfolio will be revealed, and the Statistics
                 Page will update.
@@ -117,10 +119,11 @@ const Instructions = () => {
               <p>
                 On the Home Page, I have provided my Venmo and PayPal accounts
                 for payment. I must receive payment by the start of games on
-                Thursday. On the Home Page, you will see a green checkmark
-                (payment received) or red X (payment not received). I will try
-                and update payment as soon as possible, understanding that I
-                will have better ability to do so after standard working hours.
+                Thursday. On the Home Page, the background of the Championship
+                Game points total will be either green (payment received) or red
+                (payment not received). I will try and update payment as soon as
+                possible, understanding that I will have better ability to do so
+                after standard working hours.
               </p>
               <p>
                 Payouts will be dependent on the number of entries received. I
